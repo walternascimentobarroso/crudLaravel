@@ -9,15 +9,16 @@ class ShoppingListController extends Controller
 {
     public function index()
     {
-        echo ('<pre>');
-        print_r(ShoppingList::all()->toArray());
-        echo ('</pre>');
-        return view('shopping-list');
+        // echo ('<pre>');
+        // print_r(ShoppingList::all()->toArray());
+        // echo ('</pre>');
+        $lists = ShoppingList::orderBy('item')->paginate(2);
+        return view('shopping-list.index', compact('lists'));
     }
 
     public function create()
     {
-        return view('shopping-list-form');
+        return view('shopping-list.form');
     }
 
     public function store(Request $request)
@@ -31,5 +32,10 @@ class ShoppingListController extends Controller
         ShoppingList::create($request->all());
 
         return redirect()->route('shopping-list');
+    }
+
+    public function show(ShoppingList $shoppingList)
+    {
+        return view('shopping-list.show', compact('shoppingList'));
     }
 }
