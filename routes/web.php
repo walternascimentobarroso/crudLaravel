@@ -16,3 +16,5 @@ Route::get('/shopping-list', [ShoppingListController::class, 'index'])->name('sh
 Route::get('/shopping-list/create', [ShoppingListController::class, 'create']);
 Route::post('/shopping-list/store', [ShoppingListController::class, 'store']);
 Route::get('/shopping-list/{shoppingList}', [ShoppingListController::class, 'show']);
+Route::get('/shopping-list/{shoppingList}/edit', [ShoppingListController::class, 'edit']);
+Route::put('/shopping-list/{shoppingList}', [ShoppingListController::class, 'update']);
