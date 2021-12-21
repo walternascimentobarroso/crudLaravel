@@ -56,7 +56,7 @@ class ShoppingListController extends Controller
 
         ShoppingList::create($request->all());
 
-        return redirect()->route('shopping-list')
+        return redirect()->route('shopping-list.index')
             ->with('success', 'List created successfully');
     }
 
@@ -104,7 +104,15 @@ class ShoppingListController extends Controller
             ? $request->all()
             : array_merge($request->all(), ['checked' => null]);
         $shoppingList->update($input);
-        return redirect()->route('shopping-list')
+        return redirect()->route('shopping-list.index')
             ->with('success', 'List updated successfully');
+    }
+
+
+    public function destroy(ShoppingList $shoppingList)
+    {
+        $shoppingList->delete();
+        return redirect()->route('shopping-list.index')
+            ->with('success', 'Item removed successfully');
     }
 }

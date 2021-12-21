@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="/shopping-list/store">
+<form method="POST" action="/shopping-list">
     @csrf
     <div class="mb-3">
         <label for="item" class="form-label">Item</label>
